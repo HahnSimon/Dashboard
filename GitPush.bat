@@ -4,9 +4,6 @@ cd /d "C:\Users\sh\OneDrive - fayardas\John Poul Dues filer - Rørafd\Dashboard 
 
 "C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" add .
 
-"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" diff --cached --quiet
+"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" commit -m "Dashboard update"
 
-if errorlevel 1 (
-    "C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" commit -m "Dashboard update"
-    "C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" push
-)
+"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" push
