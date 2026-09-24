@@ -1,9 +1,15 @@
 @echo off
 
-cd /d "C:\Users\sh\OneDrive - fayardas\John Poul Dues filer - Rørafd\Dashboard Rørværksted\Github\Dashboard"
+REM Skift automatisk til mappen, hvor GitPush.bat ligger
+cd /d "%~dp0"
 
-"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" add .
+REM Tilføj ændringer
+git add .
 
-"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" commit -m "Dashboard update"
+REM Opret commit
+git commit -m "Dashboard update"
 
-"C:\Users\sh\AppData\Local\Programs\Git\cmd\git.exe" push
+REM Send ændringerne til GitHub
+git push
+
+pause
