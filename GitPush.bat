@@ -1,15 +1,42 @@
 @echo off
-
-REM Skift automatisk til mappen, hvor GitPush.bat ligger
 cd /d "%~dp0"
 
-REM Tilføj ændringer
-git add .
+set "GITEXE=%LOCALAPPDATA%\Programs\Git\cmd\git.exe"
 
-REM Opret commit
-git commit -m "Dashboard update"
+if not exist "%GITEXE%" (
+    echo FEJL: Git blev ikke fundet her:
+    echo %GITEXE%
+    echo.
+    echo Installer Git for Windows paa denne computer.
+    exit /b 10
+)
 
-REM Send ændringerne til GitHub
-git push
+echo Arbejdsmappe: %CD%
+echo.
 
-pause
+"%GITEXE%" add .
+if errorlevel 1 (
+    echo FEJL: git add mislykkedes.
+    exit /b 11
+)
+
+"%GITEXE%" diff --cached --quiet
+if %errorlevel%==0 (
+    echo Ingen nye dashboard-aendringer.
+    exit /b 0
+)
+
+"%GITEXE%" commit -m "Dashboard update"
+if errorlevel 1 (
+    echo FEJL: git commit mislykkedes.
+    exit /b 12
+)
+
+"%GITEXE%" push
+if errorlevel 1 (
+    echo FEJL: git push mislykkedes.
+    exit /b 13
+)
+
+echo Dashboard udgivet korrekt.
+exit /b 0
